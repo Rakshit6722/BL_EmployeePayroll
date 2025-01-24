@@ -9,7 +9,7 @@ $(document).ready(() => {
         employeeData.forEach((employee,index) => {
 
             const departmentHTML = employee.department
-                .map((dept) => `<span>${dept}</span>`)
+                .map((dept) => `<span>${capitalizeFirstLetter(dept)}</span>`)
                 .join(", "); 
 
 
@@ -20,10 +20,10 @@ $(document).ready(() => {
                     <td>
                         <div class="emp-dash-table-body-img">
                             <img src="${employee.profileImage}" alt="Profile Image" />
-                            <span>${employee.name}</span>
+                            <span>${capitalizeFirstLetter(employee.name)}</span>
                         </div>
                     </td>
-                    <td>${employee.gender}</td>
+                    <td>${capitalizeFirstLetter(employee.gender)}</td>
                     <td>${departmentHTML}</td>
                     <td>${employee.salary}</td>
                     <td>${dateString}</td>
@@ -50,5 +50,10 @@ function editEmployee(index) {
     console.log(index)
     console.log("edit icon clicked");
     window.location.href = `empForm.html?index=${index}`;
+}
+
+function capitalizeFirstLetter(str) {
+    if (!str) return ''; 
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
