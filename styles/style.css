@@ -31,6 +31,11 @@ html {
     position: relative;
 }
 
+.emp-dash-nav-link-add{
+    text-decoration: none;
+    color: white;
+}
+
 .emp-dash-logo-div {
     display: flex;
     gap: 0.3rem;

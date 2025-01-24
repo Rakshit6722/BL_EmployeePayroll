@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../js/script.js" defer></script>
     <title>Employee-Dashboard</title>
 </head>
 
@@ -28,7 +30,9 @@
                     <div class="emp-dash-nav-search"><img src="../assets/search_icon.png" /></div>
                     <div class="emp-dash-nav-add-user">
                         <img src="../assets//add.png" />
-                        <p>Add User</p>
+                        <a class="emp-dash-nav-link-add" href="empForm.html">
+                            <p>Add User</p>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -61,6 +65,7 @@
                                 <img src="../assets/pen.png" />
                                 <img>
                             </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

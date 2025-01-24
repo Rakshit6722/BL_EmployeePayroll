@@ -1,70 +1,98 @@
 const form = document.querySelector('#employeeForm');
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault()
+    e.preventDefault(); 
 
-    const name = document.getElementById("name").value;
+    const name = document.getElementById("name").value.trim();
 
     if (!/^[A-Za-z\s]+$/.test(name)) {
-        alert('Name must be letters only');
-        return
+        alert('Name must contain letters only');
+        return;
     }
 
-    const profileImage =  document.querySelector("input[name='profile-image']:checked")?.value || ""
-    if(!profileImage){
+    const profileImage = document.querySelector("input[name='profile-image']:checked")?.value || "";
+    if (!profileImage) {
         alert('Please select a profile image');
-        return
+        return;
     }
 
     const gender = document.querySelector("input[name='profile-gender']:checked")?.value || "";
-    if(!gender){
-        alert('Please select a gender')
-        return
+    if (!gender) {
+        alert('Please select a gender');
+        return;
     }
 
-    const department = Array.from(document.querySelectorAll("input[name='department']:checked")).map(element => element?.value)
-    if(department.length === 0){
-        alert('Please select a department');
-        return
+    const department = Array.from(document.querySelectorAll("input[name='department']:checked")).map(element => element?.value);
+    if (department.length === 0) {
+        alert('Please select at least one department');
+        return;
     }
+
+    const salary = document.getElementById("salary").value.trim();
+    const day = document.getElementById("day").value.trim();
+    const month = document.getElementById("month").value.trim();
+    const year = document.getElementById("year").value.trim();
+    const notes = document.getElementById("notes").value.trim();
 
     const newEmployee = {
         name,
         profileImage,
         gender,
         department,
-        salary: document.getElementById("salary").value,
-        startDate:{
-            day: document.getElementById("day").value,
-            month: document.getElementById("month").value,
-            year: document.getElementById("year").value
-        },
-        notes: document.getElementById("notes")?.value || ""
+        salary,
+        startDate: { day, month, year },
+        notes
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const index = params.get('index');
+
+    if (index !== null) {
+
+        const employeeData = JSON.parse(localStorage.getItem('employees'))
+        employeeData[index] = newEmployee;
+        localStorage.setItem('employees', JSON.stringify(employeeData));
+        alert('Employee updated successfully');
+    } else {
+        const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+        employeeData.push(newEmployee); 
+        localStorage.setItem('employees', JSON.stringify(employeeData));
+        alert('Employee added successfully');
     }
 
-    if(localStorage.getItem('employees')){
-        const existingEmployees = JSON.parse(localStorage.getItem('employees'));
-        existingEmployees.push(newEmployee);
-        localStorage.setItem('employees', JSON.stringify(existingEmployees));
-    }else{
-        localStorage.setItem('employees', JSON.stringify([newEmployee]));
-    }
-    alert('Employee added successfully');
-})
+    window.location.href = "index.html";
+});
 
 form.addEventListener("reset", (e) => {
-    if(!confirm('Are you sure you want to reset the form?')){
-        e.preventDefault()
-        return
-    }else{
-        document.getElementById("name").value = "";
-        document.getElementById("salary").value = "";
-        document.getElementById("day").value = "";
-        document.getElementById("month").value = "";
-        document.getElementById("year").value = "";
-        document.getElementById("notes").value = "";
-        document.querySelector("input[name='profile-image']:checked").checked = false;
-        document.querySelector("input[name='profile-gender']:checked").checked = false;
-        Array.from(document.querySelectorAll("input[name='department']:checked")).forEach(element => element.checked = false);
+    if (!confirm('Are you sure you want to reset the form?')) {
+        e.preventDefault();
     }
-})
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const index = params.get('index');
+
+    if (index !== null) {
+        const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+        const employee = employeeData[index];
+
+        if (employee) {
+            document.getElementById("name").value = employee.name;
+            document.getElementById("salary").value = employee.salary;
+            document.getElementById("day").value = employee.startDate.day;
+            document.getElementById("month").value = employee.startDate.month;
+            document.getElementById("year").value = employee.startDate.year;
+            document.getElementById("notes").value = employee.notes;
+
+            document.querySelector(`input[name='profile-image'][value='${employee.profileImage}']`).checked = true;
+            document.querySelector(`input[name='profile-gender'][value='${employee.gender}']`).checked = true;
+
+            employee.department.forEach(dept => {
+                document.querySelector(`input[name='department'][value='${dept}']`).checked = true;
+            });
+        } else {
+            alert('Invalid employee index!');
+        }
+    }
+});
