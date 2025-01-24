@@ -315,3 +315,113 @@ html {
 .emp-form-notes-textarea {
     width: 70%;
 }
+
+@media (max-width: 768px) {
+    .emp-reg-form {
+        padding: 1.5rem;
+        gap: 2rem;
+    }
+
+    .emp-reg-form h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .emp-reg-form-content {
+        gap: 1rem;
+    }
+
+    .emp-reg-form-name,
+    .emp-gender-options,
+    .emp-reg-form-department,
+    .emp-reg-form-salary,
+    .emp-reg-form-start-date,
+    .emp-form-notes {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .emp-reg-form-name label,
+    .emp-reg-form-radio-option label,
+    .emp-gender-options label,
+    .emp-reg-form-department label,
+    .emp-reg-form-salary label,
+    .emp-reg-form-start-date label,
+    .emp-form-notes label {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .emp-reg-form-name input,
+    .profile-radio,
+    .emp-reg-form-radio-gender-option,
+    .emp-reg-form-checkbox-department,
+    .emp-reg-form-salary-select,
+    .emp-reg-form-start-date-select,
+    .emp-form-notes-textarea {
+        width: 100%;
+    }
+
+    .emp-reg-form-button {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .emp-reg-form-button-submit {
+        width: 100%;
+    }
+
+    .emp-form-notes textarea{
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .emp-reg-logo-div {
+        margin-left: 2%;
+        gap: 0.2rem;
+    }
+
+    .emp-reg-logo-div img {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .emp-reg-form {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .emp-reg-form h2 {
+        font-size: 1.25rem;
+    }
+
+    .emp-reg-form-button {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .emp-reg-form-button-submit #submit-button {
+        width: 100%;
+    }
+
+    .emp-form-notes textarea {
+        margin-left: 0;
+    }
+
+    .emp-form-notes textarea{
+        margin-left: 0;
+    }
+
+    .emp-reg-form-checkbox-department{
+        display: block;
+    }
+
+    .emp-reg-form-radio-option{
+        display: block;
+    }
+
+    .profile-radio{
+        flex-wrap: wrap;
+    }
+}

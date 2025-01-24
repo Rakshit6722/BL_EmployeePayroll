@@ -8,6 +8,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
+    <script src="../js/employeeForm.js" defer></script>
     <title>Employee Payroll</title>
 </head>
 
@@ -99,7 +100,7 @@
                     <div class="emp-reg-form-salary">
                         <label for="salary">Select Salary</label>
                         <div class="emp-reg-form-salary-select">
-                            <select id="salary" name="salary">
+                            <select id="salary" name="salary" required>
                                 <option value="" disabled selected>Select Salary</option>
                                 <option value="below_20k">₹10,000</option>
                                 <option value="20k_30k">₹20,000</option>
@@ -111,7 +112,7 @@
                     <div class="emp-reg-form-start-date">
                         <label>Start Date</label>
                         <div class="emp-reg-form-start-date-select">
-                            <select id="day" name="day">
+                            <select id="day" name="day" required>
                                 <option value="" disabled selected>Day</option>
 
                                 <option value="01">01</option>
@@ -123,7 +124,7 @@
                             </select>
 
 
-                            <select id="month" name="month">
+                            <select id="month" name="month" required>
                                 <option value="" disabled selected>Month</option>
                                 <option value="01">January</option>
                                 <option value="02">February</option>
@@ -140,7 +141,7 @@
                             </select>
 
 
-                            <select id="year" name="year">
+                            <select id="year" name="year" required>
                                 <option value="" disabled selected>Year</option>
                                 <option value="2021">2021</option>
                                 <option value="2022">2022</option>
