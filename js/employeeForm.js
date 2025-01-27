@@ -1,7 +1,8 @@
 const form = document.querySelector('#employeeForm');
+const url = "http://localhost:3000/employeeList";
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
 
@@ -44,24 +45,48 @@ form.addEventListener('submit', (e) => {
         notes
     };
 
-    const params = new URLSearchParams(window.location.search);
-    const index = params.get('index');
-
-    if (index !== null) {
-
-        const employeeData = JSON.parse(localStorage.getItem('employees'))
-        employeeData[index] = newEmployee;
-        localStorage.setItem('employees', JSON.stringify(employeeData));
-        alert('Employee updated successfully');
+    const employee = JSON.parse(localStorage.getItem('employeeToEdit'));
+    if (!employee) {
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newEmployee)
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to register new employee!");
+                }
+                window.location.href = "index.html";
+                alert("Employee registered successfully");
+            })
+            .catch(err => {
+                alert(err.message);
+            });
     } else {
-        const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
-        employeeData.push(newEmployee); 
-        localStorage.setItem('employees', JSON.stringify(employeeData));
-        alert('Employee added successfully');
+        fetch(`${url}/${employee.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newEmployee)
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to update employee!");
+                }
+                window.location.href = "index.html";
+                alert("Employee updated successfully");
+                localStorage.removeItem('employeeToEdit')
+            })
+            .catch(err => {
+                alert(err.message);
+            });
     }
 
-    window.location.href = "index.html";
 });
+
 
 form.addEventListener("reset", (e) => {
     if (!confirm('Are you sure you want to reset the form?')) {
@@ -70,13 +95,9 @@ form.addEventListener("reset", (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const index = params.get('index');
+    const employee = JSON.parse(localStorage.getItem('employeeToEdit'));
 
-    if (index !== null) {
-        const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
-        const employee = employeeData[index];
-
+    if (employee) {
         if (employee) {
             document.getElementById("name").value = employee.name;
             document.getElementById("salary").value = employee.salary;
@@ -92,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector(`input[name='department'][value='${dept}']`).checked = true;
             });
         } else {
-            alert('Invalid employee index!');
+            alert('Invalid employee data');
         }
     }
 });
