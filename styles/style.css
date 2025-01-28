@@ -31,7 +31,7 @@ html {
     position: relative;
 }
 
-.emp-dash-nav-link-add{
+.emp-dash-nav-link-add {
     text-decoration: none;
     color: white;
 }
@@ -88,17 +88,7 @@ html {
     font-size: 1.75rem;
 }
 
-.emp-dash-nav-search {
-    height: 35px;
-    width: 50px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 1px 3px #00000029;
-    border-radius: 28px
-}
+
 
 .emp-dash-nav-search img {
     width: 1.2rem;
@@ -155,11 +145,11 @@ html {
     color: white;
 }
 
-tbody tr{
+tbody tr {
     border-bottom: 1px solid #E0E0E0;
 }
 
-.emp-dash-table-body tr td{
+.emp-dash-table-body tr td {
     text-align: center;
     padding: 1rem;
     width: auto;
@@ -168,18 +158,53 @@ tbody tr{
     /* color: white; */
 }
 
-.emp-dash-table-body{
+.emp-dash-table-body {
     border: 2px solid #E0E0E0;
 }
 
-.emp-dash-table-body-img{
+.emp-dash-table-body-img {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.emp-dash-table-body-img img{
+.emp-dash-table-body-img img {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+}
+
+.emp-main-search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+    max-width: 500px;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    gap: 0.5rem;
+}
+
+.emp-dash-nav-search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.emp-main-search-box input {
+    outline: none;
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    font-size: 1rem;
+    padding: 0.2rem;
+    color: #333;
+}
+
+.emp-main-search-box input::placeholder {
+    font-size: 0.9rem;
 }

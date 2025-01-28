@@ -47,6 +47,10 @@ html {
     height: 2.5rem;
 }
 
+.emp-reg-title{
+    text-decoration: none;
+}
+
 .emp-reg-title p:first-of-type {
     font-weight: bold;
     color: #82A70C;

@@ -27,9 +27,14 @@
                     <h2>Employee Details</h2>
                 </div>
                 <div class="emp-dash-nav-functions">
-                    <div class="emp-dash-nav-search"><img src="../assets/search_icon.png" /></div>
+                    <div class="emp-main-search-box">
+                        <input type="text" id="emp-main-search_box" />
+                        <div class="emp-dash-nav-search-icon">
+                            <div onclick="searchByName()" class="emp-dash-nav-search"><img src="../assets/search_icon.png" /></div>
+                        </div>
+                    </div>
                     <div class="emp-dash-nav-add-user">
-                        <img src="../assets//add.png" />
+                        <img src="../assets/add.png" />
                         <a class="emp-dash-nav-link-add" href="empForm.html">
                             <p>Add User</p>
                         </a>
